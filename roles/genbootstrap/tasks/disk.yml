@@ -1,0 +1,40 @@
+- name: Create Partitions
+  community.general.parted:
+    number: "{{ item.number }}"
+    device: "{{ genbootstrap_disk_name }} "
+    label: gpt
+    name: "{{ item.name }}"
+    fs_type: "{{ item.fs_type }}"
+    state: present
+    part_start: "{{ item.part_start }}"
+    part_end: "{{ item.part_end | default(omit) }}"
+  loop:
+    - number: 1
+      name: "{{ genbootstrap_boot_label }}"
+      fs_type: fat32
+      part_start: 0GB
+      part_end: 1GB
+    - number: 2
+      name: "{{ genbootstrap_root_label }}"
+      fs_type: ext4
+      part_start: 1GB
+      part_end: -2GB
+    - number: 3
+      name: "{{ genbootstrap_swap_label }}"
+      fs_type: swap
+      part_start: -2GB
+
+
+- name: Mount partitions
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    src: LABEL="{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    state: present
+  loop:
+    - path: "{{ genbootstrap_mount_path }}"
+      src: "{{ genbootstrap_root_label }}"
+      fstype: ext4
+    - path: "{{ genbootstrap_mount_path }}/boot"
+      src: "{{ genbootstrap_boot_label }}"
+      fstype: fat32

@@ -1,0 +1,17 @@
+- name: Create ansible user
+  ansible.builtin.user:
+    name: ansible
+
+- name: Add SSH-Key for ansible user
+  ansible.posix.authorized_key:
+    user: ansible
+    key: "{{ lookup('file', '~/.ssh/ansible.pub') }}"
+
+- name: Add sudo permission for ansible user
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/ansible
+    content: "ansible ALL=(ALL) NOPASSWD: ALL"
+    mode: "0440"
+    owner: root
+    group: root
+    validate: "/usr/sbin/visudo -cf %s"

@@ -1,0 +1,4 @@
+---
+
+- name: Bootstrap Gentoo Servers
+  roles: genbootstrap

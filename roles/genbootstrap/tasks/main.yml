@@ -1,0 +1,15 @@
+---
+
+- name: Partition and mount Drive
+  ansible_host: localhost
+  ansible.builtin.include_tasks:
+    - disk.yml
+
+- name: Download, verify and install stage3
+  ansible.builtin.include_tasks:
+  ansible_host: localhost
+    - stage3.yml
+
+- name: Configure the base system
+  ansible.builtin.include_tasks:
+    - configuration.yml

@@ -1,0 +1,9 @@
+genbootstrap_disk_name: /dev/vda
+genbootstrap_boot_label: boot
+genbootstrap_root_label: root
+genbootstrap_swap_label: swap
+genbootstrap_mount_path: /mnt/gentoo
+
+genbootstrap_init_system: openrc
+genbootstrap_arch: amd64
+genbootstrap_downloaddir: /tmp

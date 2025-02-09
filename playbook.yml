@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Update Repo Index
+    tags: always
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Debian"
+
+- hosts: all
+  become: yes
+  roles:
+    - base
+
+- hosts: debianserver
+  become: yes
+  roles:
+    - geerlingguy.nfs

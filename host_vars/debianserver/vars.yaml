@@ -1,0 +1,5 @@
+ssh_users: "arthur ansible"
+packages:
+  - vim
+  - btop
+nfs_exports: ["/srv/test *(rw,sync,all_squash)"]

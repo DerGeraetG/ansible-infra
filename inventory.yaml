@@ -1,0 +1,8 @@
+debian:
+  hosts:
+    debianserver:
+      ansible_host: 192.168.122.199
+      ansible_connection: ssh
+    
+    
+
