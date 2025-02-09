@@ -19,11 +19,11 @@
       name: "{{ genbootstrap_root_label }}"
       fs_type: ext4
       part_start: 1GB
-      part_end: -2GB
+      part_end: -"{{ genbootstrap_swap_size }}"
     - number: 3
       name: "{{ genbootstrap_swap_label }}"
       fs_type: linux-swap
-      part_start: -2GB
+      part_start: -"{{ genbootstrap_swap_size }}"
 
 - name: Make Filesystems
   community.general.filesystem:
@@ -44,7 +44,7 @@
 - name: Mount partitions
   ansible.posix.mount:
     path: "{{ item.path }}"
-    src: "PARTLABEL={{ item.src }}"
+    src: "LABEL={{ item.src }}"
     fstype: "{{ item.fstype }}"
     state: "{{ item.state | default(present) }}"
   loop:

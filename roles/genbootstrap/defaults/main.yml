@@ -1,3 +1,4 @@
+genbootstrap_swap_size: 2GB
 genbootstrap_disk_name: /dev/vda
 genbootstrap_boot_label: boot
 genbootstrap_root_label: root
