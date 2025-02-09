@@ -35,4 +35,6 @@
   ansible.builtin.unarchive:
     src: "{{ genbootstrap_downloaddir }}/stage3-{{ genbootstrap_arch }}-{{ genbootstrap_init_system }}.tar.xz"
     dest: "{{ genbootstrap_mount_path }}"
-    extra_opts: [--xattrs-include='*.*', --numeric-owner]
+    extra_opts:
+      - "--xattrs-include='*.*'"
+      - "--numeric-owner"
