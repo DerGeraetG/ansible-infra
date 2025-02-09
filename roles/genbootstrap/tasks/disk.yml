@@ -12,7 +12,7 @@
   loop:
     - number: 1
       name: "{{ genbootstrap_boot_label }}"
-      fs_type: fat32
+      fs_type: vfat
       part_start: 0GB
       part_end: 1GB
     - number: 2
@@ -25,6 +25,19 @@
       fs_type: linux-swap
       part_start: -2GB
 
+- name: Make Filesystems
+  community.general.filesystem:
+    device: "{{ genbootstrap_disk_name }}{{ item.number }}"
+    fstype: "{{ item.fstype }}"
+    opts: " {{ item.opts | default(omit) }} "
+  loop:
+    - number: 1
+      fstype: vfat
+      opts: "{{ -F 32 }}"
+    - number: 2
+      fstype: ext4
+    - number: 3
+      fstype: swap
 
 - name: Mount partitions
   ansible.posix.mount:
