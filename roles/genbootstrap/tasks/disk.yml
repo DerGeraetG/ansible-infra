@@ -33,13 +33,13 @@
   loop:
     - number: 1
       fstype: vfat
-      opts: -F 32 -n "{{ genbootstrap_boot_label }}"
+      opts: -F 32 -n {{ genbootstrap_boot_label }}
     - number: 2
       fstype: ext4
-      opts: -L "{{ genbootstrap_root_label }}"
+      opts: -L {{ genbootstrap_root_label }}
     - number: 3
       fstype: swap
-      opts: -L "{{ genbootstrap_swap_label }}"
+      opts: -L {{ genbootstrap_swap_label }}
 
 - name: Mount partitions
   ansible.posix.mount:
