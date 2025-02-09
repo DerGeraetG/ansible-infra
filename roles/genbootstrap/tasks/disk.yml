@@ -42,7 +42,7 @@
 - name: Mount partitions
   ansible.posix.mount:
     path: "{{ item.path }}"
-    src: LABEL="{{ item.src }}"
+    src: PARTLABEL="{{ item.src }}"
     fstype: "{{ item.fstype }}"
     state: present
   loop:
