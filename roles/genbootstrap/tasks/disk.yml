@@ -54,5 +54,5 @@
       state: mounted
     - path: "{{ genbootstrap_mount_path }}/boot"
       src: "{{ genbootstrap_boot_label }}"
-      fstype: fat32
+      fstype: vfat
       state: mounted
