@@ -1,13 +1,10 @@
 ---
 
 - name: Partition and mount Drive
-  ansible.builtin.include_tasks:
-    - disk.yml
+  ansible.builtin.include_tasks: disk.yml
 
 - name: Download, verify and install stage3
-  ansible.builtin.include_tasks:
-    - stage3.yml
+  ansible.builtin.include_tasks: stage3.yml
 
 - name: Configure the base system
-  ansible.builtin.include_tasks:
-    - configuration.yml
+  ansible.builtin.include_tasks: configuration.yml
