@@ -3,7 +3,7 @@
     number: "{{ item.number }}"
     device: "{{ genbootstrap_disk_name }}"
     label: gpt
-    name: "{{ item.name }}"
+    name: "{{ item.name | default(omit) }}"
     fs_type: "{{ item.fs_type }}"
     state: present
     part_start: "{{ item.part_start }}"
@@ -11,17 +11,17 @@
     unit: GB
   loop:
     - number: 1
-      name: "{{ genbootstrap_boot_label }}"
+      # name: "{{ genbootstrap_boot_label }}"
       fs_type: vfat
       part_start: 0GB
       part_end: 1GB
     - number: 2
-      name: "{{ genbootstrap_root_label }}"
+      # name: "{{ genbootstrap_root_label }}"
       fs_type: ext4
       part_start: 1GB
       part_end: -2GB
     - number: 3
-      name: "{{ genbootstrap_swap_label }}"
+      # name: "{{ genbootstrap_swap_label }}"
       fs_type: linux-swap
       part_start: -2GB
 
@@ -33,16 +33,18 @@
   loop:
     - number: 1
       fstype: vfat
-      opts: -F 32
+      opts: -F 32 -n "{{ genbootstrap_boot_label }}"
     - number: 2
       fstype: ext4
+      opts: -L "{{ genbootstrap_root_label }}"
     - number: 3
       fstype: swap
+      opts: -L "{{ genbootstrap_swap_label }}"
 
 - name: Mount partitions
   ansible.posix.mount:
     path: "{{ item.path }}"
-    src: PARTLABEL="{{ item.src }}"
+    src: LABEL="{{ item.src }}"
     fstype: "{{ item.fstype }}"
     state: present
   loop:

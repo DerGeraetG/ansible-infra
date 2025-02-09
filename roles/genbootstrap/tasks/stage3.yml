@@ -2,10 +2,13 @@
   ansible.builtin.get_url:
     url: "https://distfiles.gentoo.org/releases/{{ genbootstrap_arch }}/autobuilds/latest-stage3-{{ genbootstrap_arch }}-{{ genbootstrap_init_system }}.txt"
     dest: "{{ genbootstrap_downloaddir }}/filename"
+    mode: '0644'
+
   
 - name: Get the latest stage3 file name
   ansible.builtin.shell:
-    cmd: "grep 'tar.xz' {{ genbootstrap_downloaddir }}/filename | cut -d ' ' -f1"
+    cmd: "set -o pipefail && grep 'tar.xz' {{ genbootstrap_downloaddir }}/filename | cut -d ' ' -f1"
+    executable: /bin/bash
   register: filename
   changed_when: false
 
@@ -13,10 +16,12 @@
   ansible.builtin.get_url:
     url: "https://distfiles.gentoo.org/releases/{{ genbootstrap_arch }}/autobuilds/{{ filename.stdout }}.sha256"
     dest: "{{ genbootstrap_downloaddir }}/stage3-sha256sum"
+    mode: '0644'
 
 - name: Get the latest stage3 file name
   ansible.builtin.shell:
-    cmd: "grep 'tar.xz' {{ genbootstrap_downloaddir }}/stage3-sha256sum | cut -d ' ' -f1"
+    cmd: "set -o pipefail && grep 'tar.xz' {{ genbootstrap_downloaddir }}/stage3-sha256sum | cut -d ' ' -f1"
+    executable: /bin/bash
   register: sha256sum
   changed_when: false
 
@@ -25,6 +30,7 @@
     url: "https://distfiles.gentoo.org/releases/{{ genbootstrap_arch }}/autobuilds/{{ filename.stdout }}"
     dest: "{{ genbootstrap_downloaddir }}/stage3-{{ genbootstrap_arch }}-{{ genbootstrap_init_system }}.tar.xz"
     checksum: "sha256:{{ sha256sum.stdout }}"
+    mode: '0644'
 
 - name: Install the stage3 to the drive
   ansible.builtin.unarchive:
