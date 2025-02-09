@@ -12,7 +12,7 @@
   loop:
     - number: 1
       # name: "{{ genbootstrap_boot_label }}"
-      fs_type: vfat
+      fs_type: fat32
       part_start: 0GB
       part_end: 1GB
     - number: 2
