@@ -29,7 +29,7 @@
   community.general.filesystem:
     device: "{{ genbootstrap_disk_name }}{{ item.number }}"
     fstype: "{{ item.fstype }}"
-    opts: " {{ item.opts | default(omit) }} "
+    opts: "{{ item.opts | default(omit) }}"
   loop:
     - number: 1
       fstype: vfat
