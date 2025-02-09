@@ -19,13 +19,13 @@
       name: "{{ genbootstrap_root_label }}"
       fs_type: ext4
       part_start: 1GB
-      part_end: -"{{ genbootstrap_swap_size }}"
+      part_end: "-{{ genbootstrap_swap_size }}"
     - number: 3
       name: "{{ genbootstrap_swap_label }}"
       fs_type: linux-swap
-      part_start: -"{{ genbootstrap_swap_size }}"
+      part_start: "-{{ genbootstrap_swap_size }}"
 
-- name: Make Filesystems
+- name: Create Filesystems on drive
   community.general.filesystem:
     device: "{{ genbootstrap_disk_name }}{{ item.number }}"
     fstype: "{{ item.fstype }}"

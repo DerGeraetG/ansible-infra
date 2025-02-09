@@ -6,3 +6,9 @@
   become_method: ansible.builtin.sudo
   roles:
     - genbootstrap
+
+- name: Configure Gentoo Chroot
+  hosts: chroots
+  connection: community.general.chroot
+  roles:
+    - gentoochroot

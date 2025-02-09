@@ -5,6 +5,3 @@
 
 - name: Download, verify and install stage3
   ansible.builtin.include_tasks: stage3.yml
-
-- name: Configure the base system
-  ansible.builtin.include_tasks: configuration.yml
