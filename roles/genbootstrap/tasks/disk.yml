@@ -1,28 +1,29 @@
 - name: Create Partitions
   community.general.parted:
     number: "{{ item.number }}"
-    device: "{{ genbootstrap_disk_name }} "
+    device: "{{ genbootstrap_disk_name }}"
     label: gpt
     name: "{{ item.name }}"
     fs_type: "{{ item.fs_type }}"
     state: present
     part_start: "{{ item.part_start }}"
     part_end: "{{ item.part_end | default(omit) }}"
+    unit: GB
   loop:
     - number: 1
       name: "{{ genbootstrap_boot_label }}"
       fs_type: fat32
       part_start: 0GB
       part_end: 1GB
-#    - number: 2
-#      name: "{{ genbootstrap_root_label }}"
-#      fs_type: ext4
-#      part_start: 1GB
-#      part_end: -2GB
-#    - number: 3
-#      name: "{{ genbootstrap_swap_label }}"
-#      fs_type: swap
-#      part_start: -2GB
+    - number: 2
+      name: "{{ genbootstrap_root_label }}"
+      fs_type: ext4
+      part_start: 1GB
+      part_end: -2GB
+    - number: 3
+      name: "{{ genbootstrap_swap_label }}"
+      fs_type: swap
+      part_start: -2GB
 
 
 - name: Mount partitions
