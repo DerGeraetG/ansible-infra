@@ -1,4 +1,8 @@
 ---
 
 - name: Bootstrap Gentoo Servers
-  roles: genbootstrap
+  hosts: localhost
+  become: true
+  become_method: ansible.builtin.sudo
+  roles:
+    - genbootstrap

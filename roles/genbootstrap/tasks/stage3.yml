@@ -7,6 +7,7 @@
   ansible.builtin.shell:
     cmd: "grep 'tar.xz' {{ genbootstrap_downloaddir }}/filename | cut -d ' ' -f1"
   register: filename
+  changed_when: false
 
 - name: Download the latest stage3 sha256sum
   ansible.builtin.get_url:
@@ -17,6 +18,7 @@
   ansible.builtin.shell:
     cmd: "grep 'tar.xz' {{ genbootstrap_downloaddir }}/stage3-sha256sum | cut -d ' ' -f1"
   register: sha256sum
+  changed_when: false
 
 - name: Download the latest stage3 tarball
   ansible.builtin.get_url:
@@ -31,4 +33,3 @@
     extra_opts:
       - "--xattrs-include='*.*'"
       - "--numeric-owner"
-    
