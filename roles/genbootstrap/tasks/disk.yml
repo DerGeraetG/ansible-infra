@@ -22,7 +22,7 @@
       part_end: -2GB
     - number: 3
       name: "{{ genbootstrap_swap_label }}"
-      fs_type: swap
+      fs_type: linux-swap
       part_start: -2GB
 
 
