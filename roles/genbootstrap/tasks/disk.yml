@@ -33,7 +33,7 @@
   loop:
     - number: 1
       fstype: vfat
-      opts: "{{ -F 32 }}"
+      opts: "-F 32"
     - number: 2
       fstype: ext4
     - number: 3
