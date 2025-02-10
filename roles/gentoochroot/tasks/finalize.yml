@@ -3,14 +3,14 @@
     name: "{{ item.name }}"
     comment: "{{ item.name }}"
   loop:
-    gentoochroot_users
+    "{{ gentoochroot_users }}"
 
 - name: Add ssh keys for the users
   ansible.posix.authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.key }}"
   loop:
-    gentoochroot_users
+    "{{ gentoochroot_users }}"
 
 - name: Configure passwordless doas
   ansible.builtin.copy:
