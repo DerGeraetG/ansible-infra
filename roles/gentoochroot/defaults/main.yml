@@ -1,5 +1,6 @@
 gentoochroot_arch: amd64
 gentoochroot_disk_name: /dev/vda
+gentoochroot_tmpsize: 8G
 
 gentoochroot_networking:
   ip_base: 192.168.122

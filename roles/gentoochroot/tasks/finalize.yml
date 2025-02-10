@@ -9,7 +9,7 @@
     user: "{{ item.name }}"
     key: "{{ item.key }}"
   loop:
-    - gentoochroot_users
+    gentoochroot_users
 
 - name: Configure passwordless doas
   ansible.builtin.copy:
@@ -20,12 +20,14 @@
     owner: root
     group: root
     mode: '0400'
-    validate: /usr/bin/doas -C /etc/doas.conf
+    validate: /usr/bin/doas -C %s
 
 - name: Generate bootable /etc/fstab
-  ansible.builtin.file:
-    src: fstab
+  ansible.builtin.template:
+    src: fstab.j2
     dest: /etc/fstab
     owner: root
     group: root
     mode: '0644'
+
+# - name: Install GRUB

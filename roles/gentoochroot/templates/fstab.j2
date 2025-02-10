@@ -1,4 +1,4 @@
 LABEL="boot"	/boot	vfat	rw,umask=0077			0	2
 LABEL="root"	/		ext4	rw,defaults,noatime		0	1
 LABEL="swap"	none	swap	sw						0	0
-tmpfs			/tmp	tmpfs	rw,nosuid,size=8G,mode=1777	0	0
+tmpfs			/tmp	tmpfs	rw,nosuid,size="{{ gentoochroot_tmpsize }}",mode=1777	0	0
