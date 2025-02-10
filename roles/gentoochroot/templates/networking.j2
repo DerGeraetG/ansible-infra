@@ -1,2 +1,2 @@
-config_"{{ gentoochroot_networking.interface_name }}"="{{ gentoochroot_networking.ip_base }}.{{ gentoochroot_networking.ip_address }} netmask {{ gentoochroot_networking.netmask }} brd {{ gentoochroot_networking.ip_base }}.255"
-routes_"{{ gentoochroot_networking.interface_name }}"="default via {{ gentoochroot_networking.default_route }}"
+config_{{ gentoochroot_networking.interface_name }}="{{ gentoochroot_networking.ip_base }}.{{ gentoochroot_networking.ip_address }} netmask {{ gentoochroot_networking.netmask }} brd {{ gentoochroot_networking.ip_base }}.255"
+routes_{{ gentoochroot_networking.interface_name }}="default via {{ gentoochroot_networking.default_route }}"

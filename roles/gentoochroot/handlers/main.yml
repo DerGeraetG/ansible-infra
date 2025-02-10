@@ -1,5 +1,5 @@
 ---
 - name: Add Networking to default runlevel
   ansible.builtin.service:
-    name: net."{{ gentoochroot_networking.interface_name }}"
+    name: net.{{ gentoochroot_networking.interface_name }}
     enabled: true
