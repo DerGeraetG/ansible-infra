@@ -8,7 +8,7 @@
 - name: Add ssh keys for the users
   ansible.posix.authorized_key:
     user: "{{ item.name }}"
-    key: "{{ item.key }}"
+    key: "{{ item.ssh_key }}"
   loop:
     "{{ gentoochroot_users }}"
 
