@@ -16,6 +16,14 @@
     cmd: getuto
     executable: /bin/bash
 
+- name: Copy useflag for gentoo-kernel-bin to package.use
+  ansible.builtin.copy:
+    content: "sys-kernel/installkernel dracut"
+    dest: /etc/portage/package.use/kernel
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Install packages to boot the base installation
   community.general.portage:
     package:

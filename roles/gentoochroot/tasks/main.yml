@@ -1,7 +1,7 @@
 - name: Configure the package manager
   ansible.builtin.include_tasks:
-    - portage.yml
+    portage.yml
 
 - name: Configure the static IP-Address
   ansible.builtin.include_tasks:
-    - network.yml
+    network.yml
