@@ -1,6 +1,7 @@
 - name: Create users
   ansible.builtin.user:
     name: "{{ item.name }}"
+    comment: "{{ item.name }}"
   loop:
     gentoochroot_users
 

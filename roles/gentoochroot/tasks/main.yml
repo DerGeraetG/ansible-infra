@@ -5,3 +5,7 @@
 - name: Configure the static IP-Address
   ansible.builtin.include_tasks:
     network.yml
+
+- name: Finalize the installation
+  ansible.builtin.include_tasks:
+    finalize.yml
