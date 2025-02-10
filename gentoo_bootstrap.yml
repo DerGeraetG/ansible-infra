@@ -1,11 +1,11 @@
 ---
 
-- name: Bootstrap Gentoo Servers
-  hosts: localhost
-  become: true
-  become_method: ansible.builtin.sudo
-  roles:
-    - genbootstrap
+# - name: Partition disk and install a stage3
+#   hosts: localhost
+#   become: true
+#   become_method: ansible.builtin.sudo
+#   roles:
+#     - genbootstrap
 
 - name: Configure Gentoo Chroot
   hosts: chroots

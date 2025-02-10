@@ -1,2 +1,0 @@
-- name: Create Users with permissions
-  ansible.builtin.include_tasks: users.yml
