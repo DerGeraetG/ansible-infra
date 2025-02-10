@@ -7,7 +7,7 @@ gentoochroot_networking:
   ip_address: 5
   netmask: 255.255.255.0
   dns_server:
-  default_route: "{{ ip_base }}.1"
+  default_route: "{{ gentoochroot_networking.ip_base }}.1"
   interface_name: enp1s0
 
 gentoochroot_users:
