@@ -1,0 +1,16 @@
+gentoochroot_arch: amd64
+gentoochroot_disk_name: /dev/vda
+
+gentoochroot_networking:
+  ip_base: 192.168.122
+  ip_address: 5
+  netmask: 255.255.255.0
+  dns_server:
+  default_route: "{{ ip_base }}.1"
+  interface_name: enp1s0
+
+gentoochroot_users:
+  - name: arthur
+    ssh_key:
+  - name: ansible
+    ssh_key:

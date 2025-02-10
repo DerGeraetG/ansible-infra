@@ -1,14 +1,8 @@
 ---
 
-# - name: Partition disk and install a stage3
-#   hosts: localhost
-#   become: true
-#   become_method: ansible.builtin.sudo
-#   roles:
-#     - genbootstrap
-
-- name: Configure Gentoo Chroot
-  hosts: chroots
-  connection: community.general.chroot
+- name: Partition the disk and install a stage3
+  hosts: localhost
+  become: true
+  become_method: ansible.builtin.sudo
   roles:
-    - gentoochroot
+    - genbootstrap

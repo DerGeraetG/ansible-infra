@@ -1,0 +1,25 @@
+- name: Run emerge-webrsync
+  ansible.builtin.shell:
+    cmd: emerge-webrsync
+    executable: /bin/bash
+
+- name: Create binhost to use
+  ansible.builtin.template:
+    src: gentoobinhost.j2
+    dest: /etc/portage/binrepos.conf/gentoobinhost.conf
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Initialize keyring
+  ansible.builtin.shell:
+    cmd: getuto
+    executable: /bin/bash
+
+- name: Install packages to boot the base installation
+  community.general.portage:
+    package:
+      - gentoo-kernel-bin
+      - grub
+      - doas
+    getbinpkg: true

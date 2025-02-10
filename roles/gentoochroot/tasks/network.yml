@@ -1,0 +1,27 @@
+- name: Set hostname
+  ansible.builtin.copy:
+    content: "tux"
+    dest: /etc/hostname
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Set Network Information
+  ansible.builtin.template:
+    src: networking.j2
+    dest: /etc/conf.d/net
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Create symlink /etc/init.d/net.lo to /etc/init.d/net."{{ gentoochroot_networking.interface_name }}"
+  ansible.builtin.file:
+    src: /etc/init.d/net.lo
+    dest: /etc/init.d/net."{{ gentoochroot_networking.interface_name }}"
+    state: link
+  notify: Add Networking to default runlevel
+
+- name: Enable SSH service
+  ansible.builtin.service:
+    name: sshd
+    enabled: true

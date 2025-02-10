@@ -1,3 +1,4 @@
 chroots:
-  hosts:
-    /mnt/gentoo
+  gentoo:
+    hosts:
+      /mnt/gentoo

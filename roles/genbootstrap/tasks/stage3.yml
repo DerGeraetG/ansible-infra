@@ -38,3 +38,12 @@
     extra_opts:
       - "--xattrs-include='*.*'"
       - "--numeric-owner"
+
+- name: Copy /etc/resolv.conf to the Chroot"
+  ansible.builtin.copy:
+    src: /etc/resolv.conf
+    dest: "{{ genbootstrap_mount_path }}/etc/resolv.conf"
+    mode: '0644'
+    owner: root
+    group: root
+    follow: false

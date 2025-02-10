@@ -1,0 +1,31 @@
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+  loop:
+    gentoochroot_users
+
+- name: Add ssh keys for the users
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.key }}"
+  loop:
+    - gentoochroot_users
+
+- name: Configure passwordless doas
+  ansible.builtin.copy:
+    content: |
+      permit nopass arthur
+      permit nopass ansible
+    dest: /etc/doas.conf
+    owner: root
+    group: root
+    mode: '0400'
+    validate: /usr/bin/doas -C /etc/doas.conf
+
+- name: Generate bootable /etc/fstab
+  ansible.builtin.file:
+    src: fstab
+    dest: /etc/fstab
+    owner: root
+    group: root
+    mode: '0644'
