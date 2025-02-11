@@ -9,3 +9,7 @@
 - name: Finalize the installation
   ansible.builtin.include_tasks:
     finalize.yml
+
+- name: Install bootloader
+  ansible.builtin.include_tasks:
+    grub.yml
