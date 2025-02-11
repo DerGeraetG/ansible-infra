@@ -1,10 +1,6 @@
 - name: Run emerge-webrsync
-  ansible.builtin.shell:
-    cmd: emerge-webrsync
-    executable: /bin/bash
-  register: result
-  changed_when: result.rc == 0
-  failed_when: result.rc != 0
+  community.general.portage:
+    sync: web
 
 - name: Create binhost to use
   ansible.builtin.template:
