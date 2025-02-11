@@ -2,6 +2,9 @@
   ansible.builtin.shell:
     cmd: emerge-webrsync
     executable: /bin/bash
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc != 0
 
 - name: Create binhost to use
   ansible.builtin.template:
@@ -15,6 +18,9 @@
   ansible.builtin.shell:
     cmd: getuto
     executable: /bin/bash
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc != 0
 
 - name: Copy useflag for gentoo-kernel-bin to package.use
   ansible.builtin.copy:

@@ -1,0 +1,2 @@
+extra_gentoo_packages:
+  - zfs

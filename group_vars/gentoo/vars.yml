@@ -1,0 +1,28 @@
+gentoo_packages:
+  - btop
+  - tmux
+  - powertop
+  - app-containers/docker
+  - app-containers/docker-compose
+  - vim
+  - doas
+  - fastfetch
+  - eix
+  - genlop
+  - gentoolkit
+  - bash-completion
+  - dev-vcs/git
+  - media-libs/libva-intel-media-driver
+  - media-video/libva-utils
+  - net-misc/chrony
+  - sys-process/cronie
+  - sys-kernel/linux-firmware
+  - sys-boot/grub
+  - sys-process/nvtop
+  - sys-kernel/gentoo-kernel-bin
+  - app-admin/needrestart
+
+gentoo_services:
+  - cronie
+  - chronyd
+  - sshd

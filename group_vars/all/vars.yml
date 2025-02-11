@@ -1,0 +1,15 @@
+hostname: "{{ inventory_hostname }}"
+
+timezone: Europe/Berlin
+
+locale:
+  - de_DE.UTF-8
+  - en_US.UTF-8
+
+keyboard_layout: de
+
+docker_dir:
+
+docker_compose_dir:
+
+services:

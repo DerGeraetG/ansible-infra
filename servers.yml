@@ -1,0 +1,8 @@
+---
+
+- name: Setup Gentoo servers
+  hosts: gentoo
+  become: true
+  become_method: community.general.doas
+  roles:
+    - nas

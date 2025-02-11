@@ -2,3 +2,6 @@ LABEL="boot"	/boot	vfat	rw,umask=0077			0	2
 LABEL="root"	/		ext4	rw,defaults,noatime		0	1
 LABEL="swap"	none	swap	sw						0	0
 tmpfs			/tmp	tmpfs	rw,nosuid,size={{ gentoochroot_tmpsize }},mode=1777	0	0
+{% if ansible_memory_mb.real.total > 30000 %}
+tmpfs			/var/tmp/portage	tmpfs	size=18G,uid=portage,gid=portage,mode=775	0 	0
+{% endif %}

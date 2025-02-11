@@ -15,3 +15,5 @@ gentoochroot_users:
     ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDf6HjGB49zbqRNDg/IqxqTqq84s1OyWVCTkUZCX3g+1 arthurw@HAL9000Artix"
   - name: ansible
     ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsoVMly77hH04wF32NQJ0SJHSi8rTxvg1Doqg2Yp0tR ansible"
+
+gentoochroot_grubtimeout: 1

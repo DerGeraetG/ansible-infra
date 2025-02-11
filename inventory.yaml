@@ -1,3 +1,25 @@
 chroots:
   hosts:
-    /mnt/gentoo
+    /mnt/gentoo:
+      ansible_connection: chroot
+
+gentoo:
+  hosts:
+    testserver:
+      ansible_host: 192.168.122.5
+    nascube:
+      ansible_host: 10.20.30.5
+    n5105:
+      ansible_host: 10.20.30.2
+    optiplex:
+      ansible_host: 10.20.30.6
+    
+test:
+  hosts:
+    testserver:
+
+prod:
+  hosts:
+    nascube:
+    n5105:
+    optiplex:
