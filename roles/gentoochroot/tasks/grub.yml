@@ -1,0 +1,17 @@
+- name: Install the GRUB2 bootloader to the disk
+  ansible.builtin.shell:
+    cmd: "grub-install --bootloader-id=GRUB --efi-directory=/boot {{ gentoochroot_disk_name }}"
+    executable: /bin/bash
+  register: result
+  failed_when: result.rc != 0
+  changed_when: result.rc == 0
+  notify: Regenerate grub.cfg
+
+- name: Copy to /etc/default/grub
+  ansible.builtin.template:
+    src: grub_default.j2
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Regenerate grub.cfg
