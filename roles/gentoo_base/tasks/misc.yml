@@ -1,0 +1,7 @@
+- name: Copy aliases to hosts
+  ansible.builtin.copy:
+    src: aliases.sh
+    dest: /etc/bash/bashrc.d/99aliases.sh
+    owner: root
+    group: root
+    mode: '0755'

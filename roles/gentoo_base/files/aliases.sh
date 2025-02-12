@@ -1,0 +1,5 @@
+alias sudo="doas"
+alias ls="ls --color=auto --group-directories-first"
+alias ll="ls -lah"
+alias l="ls -cAF"
+alias ip="ip -c"

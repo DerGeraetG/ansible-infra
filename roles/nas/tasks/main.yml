@@ -1,0 +1,11 @@
+- name: Install host specific Packages and services
+  ansible.builtin.include_tasks:
+    packages.yml
+
+- name: Configure a ZFS RAIDZ2 and an nfs export for the harddrives
+  ansible.builtin.include_tasks:
+    zfs.yml
+
+- name: Setup docker application stack
+  ansible.builtin.include_tasks:
+    container.yml

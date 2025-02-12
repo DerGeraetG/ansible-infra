@@ -1,5 +1,16 @@
-extra_gentoo_packages:
+extra_packages:
   - zfs
+  - app-containers/docker
+  - docker-compose
+  - nfs-utils
+
+extra_services:
+  - zfs-import:
+    runlevel: boot
+  - zfs-mount:
+    runlevel: boot
+  - zfs-share
+  - nfs
 
 portage_make:
   cpu_march: native
@@ -8,7 +19,21 @@ portage_make:
   useflags: |
     -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap -openquicktime -radius -bluetooth \
     -ios -ipod -motif -coreaudio -cdda -cdr -nas -smartcard -ibm -emboss -clamav bash-completion \
-    vaapi lto pgo profile orc
+    lto pgo profile orc dist-kernel -postgres
   cpu_flags: test
   video_card: intel
   emerge_opts:
+
+storage:
+  init_zfspool: true
+  zfs_poolname: data
+  zfs_pooltype: raidz2
+  # zfs_filesystem_name:
+  zfs_nfs_share_name: share
+  hdd_paths:
+    - /dev/by-id
+
+container:
+  database_dir:
+  data_dir: /{{ storage.zfs_poolname }}/docker/data
+  compose_dir:

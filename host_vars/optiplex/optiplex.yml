@@ -1,5 +1,5 @@
-extra_gentoo_packages:
-  - docker
+extra_packages:
+  - app-containers/docker
   - docker-compose
 
 portage_make:
@@ -9,7 +9,7 @@ portage_make:
   useflags: |
     -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap -openquicktime -radius -bluetooth \
     -ios -ipod -motif -coreaudio -cdda -cdr -nas -smartcard -ibm -emboss -clamav bash-completion \
-    vaapi lto pgo profile orc
+    vaapi lto pgo profile orc dist-kernel -postgres
   cpu_flags: test
   video_card: intel
   emerge_opts:

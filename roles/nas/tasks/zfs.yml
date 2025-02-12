@@ -1,0 +1,35 @@
+- name: Create a ZFS Pool with the available harddrives
+  ansible.builtin.shell:
+    cmd: "zpool create {{ storage.zfs_poolname }} {{ storage.zfs_pooltype }} {{ storage.hdd_paths | join(' ') }}"
+    executable: /bin/bash
+  register: result
+  when: init_zfspool
+  changed_when: result.rc == 0
+  failed_when: result.rc != 0 and "is in use" not in result.stdout
+
+- name: Create a NFS share in the ZFS Pool
+  ansible.builtin.shell:
+    cmd: "zfs create -o sharenfs=on {{ storage.zfs_poolname }}/{{ zfs_nfs_share_name }}"
+    executable: /bin/bash
+  register: result
+  when: init_zfspool
+  changed_when: result.rc == 0
+  failed_when: result.rc != 0 and "dataset already exists" not in result.stdout
+  notify: Restart NFS
+
+# - name: Create a ZFS Filesystem in the ZFS Pool
+#   ansible.builtin.shell:
+#     cmd: "zfs create {{ storage.zfs_poolname }}/{{ storage.zfs_filesystem_name }}"
+#     executable: /bin/bash
+#   register: result
+#   when: create_zfsfilesystem
+#   changed_when: result.rc == 0
+#   failed_when: result.rc != 0
+
+- name: Copy cron job for scrubbing and trimming
+  ansible.builtin.template:
+    src: zfs_maintenance_cron
+    dest: /etc/cron.d/zfs-maintenance
+    owner: root
+    group: root
+    mode: '0644'

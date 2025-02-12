@@ -17,6 +17,7 @@ base_packages:
   - sys-process/nvtop
   - sys-kernel/gentoo-kernel-bin
   - app-admin/needrestart
+  - sys-firmware/intel-microcode
 
 base_services:
   - cronie

@@ -19,12 +19,12 @@
     line: keymap="{{ keyboard_layout }}"
 
 - name: Set locales
-  ansible.builtin.blockinfile:
-    path: /etc/locale.gen
-    block: |
-      {{ item }} UTF-8
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}"
-  loop: "{{ locale }}"
+  ansible.builtin.copy:
+    content: "{{ locale | join(' UTF-8\n') }} UTF-8\n"
+    dest: /etc/locale.gen
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Generate locales
   ansible.builtin.shell:

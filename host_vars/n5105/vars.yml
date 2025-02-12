@@ -1,4 +1,4 @@
-extra_gentoo_packages:
+extra_packages:
   - dnsmasq
 
 portage_make:

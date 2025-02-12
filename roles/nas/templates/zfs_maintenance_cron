@@ -1,0 +1,2 @@
+0 0 1,15 * * root /sbin/zpool scrub {{ storage.zfs_poolname }}
+0 0 8,22 * * root /sbin/zpool trim {{ storage.zfs_poolname }}

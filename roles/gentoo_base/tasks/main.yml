@@ -6,4 +6,6 @@
   ansible.builtin.include_tasks:
     portage.yml
 
-# - name:
+- name: Do miscellaneous things
+  ansible.builtin.include_tasks:
+    misc.yml

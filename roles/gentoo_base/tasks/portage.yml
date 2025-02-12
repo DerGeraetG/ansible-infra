@@ -58,6 +58,6 @@
     state: started
   loop: "{{ base_services }}"
 
-- name: Clean old packages
+- name: Cleanout old packages
   community.general.portage:
     depclean: true

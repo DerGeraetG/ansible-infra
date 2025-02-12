@@ -1,5 +1,17 @@
-extra_gentoo_packages:
-  - qemu-ga
+extra_packages:
+  - qemu-guest-agent
+  - zfs
+  - nfs-utils
+
+extra_services:
+  - zfs-import:
+    runlevel: boot
+  - zfs-mount:
+    runlevel: boot
+  - zfs-share
+  - nfs
+  - qemu-guest-agent
+
 
 portage_make:
   cpu_march: native

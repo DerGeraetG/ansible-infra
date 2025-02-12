@@ -1,0 +1,13 @@
+- name: Install additional Packages
+  community.general.portage:
+    name: "{{ extra_packages }}"
+  when: extra_packages != ""
+
+- name: Start additional services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    runlevel: "{{ item.runlevel | default(omit) }}"
+    state: started
+    enabled: true
+  loop: "{{ extra_services }}"
+  when: extra_services != ""
