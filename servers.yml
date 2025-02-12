@@ -1,7 +1,7 @@
 ---
 
 - name: Setup Testserver
-  hosts: testserver
+  hosts: test
   become: true
   become_method: community.general.doas
   roles:
@@ -9,23 +9,11 @@
   tags:
     - test
 
-- name: Setup NAS server
-  hosts: nascube
+- name: Base Setup Production servers
+  hosts: prod
   become: true
   become_method: community.general.doas
   roles:
     - gentoo_base
-
-- name: Setup Optiplex
-  hosts: optiplex
-  become: true
-  become_method: community.general.doas
-  roles:
-    - gentoo_base
-
-- name: Setup N5105
-  hosts: n5105
-  become: true
-  become_method: community.general.doas
-  roles:
-    - gentoo_base
+  tags:
+    - prod

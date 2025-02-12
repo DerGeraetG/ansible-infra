@@ -20,7 +20,7 @@
 
 - name: Copy useflag for gentoo-kernel-bin to package.use
   ansible.builtin.copy:
-    content: "sys-kernel/installkernel dracut"
+    src: kernel_use
     dest: /etc/portage/package.use/kernel
     owner: root
     group: root

@@ -1,0 +1,11 @@
+extra_gentoo_packages:
+  - dnsmasq
+
+portage_make:
+  cpu_march: native
+  go_amd: v2
+  makeopts: -j3
+  useflags:
+  cpu_flags: test
+  video_card: intel
+  emerge_opts: --getbinpkg --keep-going

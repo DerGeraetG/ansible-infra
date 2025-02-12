@@ -1,9 +1,10 @@
 extra_gentoo_packages:
-  - zfs
+  - docker
+  - docker-compose
 
 portage_make:
   cpu_march: native
-  go_amd: v3
+  go_amd: v4
   makeopts: -j6
   useflags: |
     -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap -openquicktime -radius -bluetooth \

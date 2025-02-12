@@ -2,8 +2,8 @@
   ansible.builtin.include_tasks:
     locales.yml
 
-- name: Setup portage repositories
+- name: Setup portage with correct make.conf
   ansible.builtin.include_tasks:
-    portage_repositories.yml
+    portage.yml
 
 # - name:

@@ -1,0 +1,63 @@
+- name: Install git
+  community.general.portage:
+    package:
+      - dev-vcs/git
+    getbinpkg: true
+
+- name: Copy repo.conf
+  ansible.builtin.copy:
+    src: gentoo.conf
+    dest: /etc/portage/repos.conf/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Check if /var/db/repos/gentoo/.git exists
+  ansible.builtin.stat:
+    path: /var/db/repos/gentoo/.git
+  register: stat_result
+
+- name: Delete /var/db/repos/gentoo if not a git repository
+  ansible.builtin.file:
+    path: /var/db/repos/gentoo
+    state: absent
+  when: not stat_result.stat.exists
+
+- name: Copy gcc useflag to /etc/portage/package.use/
+  ansible.builtin.copy:
+    src: gcc_use
+    dest: /etc/portage/package.use/gcc
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy make.conf to /etc/portage/make.conf
+  ansible.builtin.template:
+    src: make.j2
+    dest: /etc/portage/make.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Update packages and sync
+  community.general.portage:
+    sync: true
+    package: "@world"
+    update: true
+    deep: true
+    newuse: true
+
+- name: Install base packages
+  community.general.portage:
+    package: "{{ base_packages }}"
+
+- name: Ensure the services are started
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop: "{{ base_services }}"
+
+- name: Clean old packages
+  community.general.portage:
+    depclean: true

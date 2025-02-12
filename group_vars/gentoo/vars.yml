@@ -1,9 +1,7 @@
 base_packages:
   - btop
-  - tmux
   - powertop
-  - app-containers/docker
-  - app-containers/docker-compose
+  - tmux
   - vim
   - doas
   - fastfetch
@@ -12,8 +10,6 @@ base_packages:
   - gentoolkit
   - bash-completion
   - dev-vcs/git
-  - media-libs/libva-intel-media-driver
-  - media-video/libva-utils
   - net-misc/chrony
   - sys-process/cronie
   - sys-kernel/linux-firmware
@@ -22,7 +18,7 @@ base_packages:
   - sys-kernel/gentoo-kernel-bin
   - app-admin/needrestart
 
-services:
+base_services:
   - cronie
   - chronyd
   - sshd

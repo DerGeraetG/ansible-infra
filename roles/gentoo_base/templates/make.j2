@@ -22,9 +22,9 @@ CGO_LDFLAGS="${LDFLAGS}"
 
 MAKEOPTS="{{ portage_make.makeopts }}"
 USE="{{ portage_make.useflags }}"
-USE="X -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap bluetooth -openquicktime -radius wifi \
-     -ios -ipod -motif -coreaudio pulseaudio -cdda -cdr -nas -smartcard -ibm -emboss -clamav bash-completion branding \
-     -qt5 -qt6 vaapi lto pgo profile orc -gnome-online-accounts"
+
+EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} {{ portage_make.emerge_opts }}"
+
 # NOTE: This stage was built with the bindist Use flag enabled
 
 # This sets the language of build output to English.
