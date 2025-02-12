@@ -1,0 +1,41 @@
+- name: Set hostname
+  ansible.builtin.copy:
+    content: "{{ hostname }}"
+    dest: /etc/hostname
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Set timezone
+  ansible.builtin.file:
+    src: /etc/localtime
+    dest: ../usr/share/zoneinfo/{{ timezone }}
+    state: link
+
+- name: Set keyboard layout
+  ansible.builtin.lineinfile:
+    path: /etc/conf.d/keymaps
+    regexp: '^keymap='
+    line: keymap={{ keyboard_layout }}
+
+- name: Set locales
+  ansible.builtin.copy:
+    content: "{{ locale }} UTF-8"
+    dest: /etc/locale.gen
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Generate locales
+  ansible.builtin.shell:
+    cmd: locale-gen
+    executable: /bin/bash
+  register: result
+  failed_when: result.rc != 0
+  changed_when: false
+
+- name: Set default locale
+  ansible.builtin.lineinfile:
+    path: /etc/env.d/02locale
+    regexp: '^LANG='
+    line: LANG={{ locale[0] }}

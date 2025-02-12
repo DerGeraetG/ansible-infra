@@ -1,4 +1,4 @@
-gentoo_packages:
+base_packages:
   - btop
   - tmux
   - powertop
@@ -22,7 +22,7 @@ gentoo_packages:
   - sys-kernel/gentoo-kernel-bin
   - app-admin/needrestart
 
-gentoo_services:
+services:
   - cronie
   - chronyd
   - sshd

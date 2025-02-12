@@ -1,2 +1,13 @@
 extra_gentoo_packages:
   - zfs
+
+portage_make:
+  cpu_march: native
+  go_amd: v3
+  makeopts: -j6
+  useflags: |
+    -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap -openquicktime -radius \
+    -ios -ipod -motif -coreaudio -cdda -cdr -nas -smartcard -ibm -emboss -clamav bash-completion \
+    vaapi lto pgo profile orc
+  cpu_flags: test
+  video_card: intel

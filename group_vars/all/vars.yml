@@ -6,10 +6,4 @@ locale:
   - de_DE.UTF-8
   - en_US.UTF-8
 
-keyboard_layout: de
-
-docker_dir:
-
-docker_compose_dir:
-
-services:
+keyboard_layout: de-latin1

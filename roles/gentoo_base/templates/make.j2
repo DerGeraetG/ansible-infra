@@ -1,0 +1,44 @@
+# These warnings indicate likely runtime problems with LTO, so promote them
+# to errors. If a package fails to build with these, LTO should not be used there.
+WARNING_FLAGS="-Werror=odr -Werror=lto-type-mismatch -Werror=strict-aliasing"
+
+COMMON_FLAGS="-march={{ portage_make.cpu_march }} -O2 -pipe -flto ${WARNING_FLAGS}"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+
+#Rustflags
+
+RUSTFLAGS="-C target-cpu=native"
+
+#Goflags
+
+GOAMD64="{{ portage_make.go_amd }}"
+CGO_CFLAGS="${CFLAGS}"
+CGO_CXXFLAGS="${CXXFLAGS}"
+CGO_FFLAGS="${FFLAGS}"
+CGO_LDFLAGS="${LDFLAGS}"
+
+MAKEOPTS="{{ portage_make.makeopts }}"
+USE="{{ portage_make.useflags }}"
+USE="X -a52 -aqua -systemd -emacs -xemacs -nntp -css -ldap bluetooth -openquicktime -radius wifi \
+     -ios -ipod -motif -coreaudio pulseaudio -cdda -cdr -nas -smartcard -ibm -emboss -clamav bash-completion branding \
+     -qt5 -qt6 vaapi lto pgo profile orc -gnome-online-accounts"
+# NOTE: This stage was built with the bindist Use flag enabled
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
+LC_MESSAGES=C.utf8
+
+LINGUAS="de en"
+L10N="de"
+
+ACCEPT_LICENSE="*"
+#ACCEPT_KEYWORDS="~amd64"
+
+CPU_FLAGS_X86="{{ portage_make.cpu_flags }}"
+
+VIDEO_CARDS="{{ portage_make.video_card }}"
+
+### Managed by ansible ###

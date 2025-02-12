@@ -1,8 +1,31 @@
 ---
 
-- name: Setup Gentoo servers
-  hosts: gentoo
+- name: Setup Testserver
+  hosts: testserver
   become: true
   become_method: community.general.doas
   roles:
-    - nas
+    - gentoo_base
+  tags:
+    - test
+
+- name: Setup NAS server
+  hosts: nascube
+  become: true
+  become_method: community.general.doas
+  roles:
+    - gentoo_base
+
+- name: Setup Optiplex
+  hosts: optiplex
+  become: true
+  become_method: community.general.doas
+  roles:
+    - gentoo_base
+
+- name: Setup N5105
+  hosts: n5105
+  become: true
+  become_method: community.general.doas
+  roles:
+    - gentoo_base

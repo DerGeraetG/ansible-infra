@@ -1,0 +1,9 @@
+- name: Setup locales, hostname, timezone
+  ansible.builtin.include_tasks:
+    locales.yml
+
+- name: Setup portage repositories
+  ansible.builtin.include_tasks:
+    portage_repositories.yml
+
+# - name:
